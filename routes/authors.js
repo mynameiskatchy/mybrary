@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Author = require('../models/author')
 
 // Routes and controllers will have single file
 // In views they will have a folder containing views
@@ -12,7 +13,10 @@ router.get('/', (req, res) => {
 
 // New author route (displaying form)
 router.get('/new', (req, res) => {
-    res.render('authors/new')
+    // This doesnt actually save anything to db
+    // but creates a new author that we can use to save, del, update stuff in db
+    // and gives object we can use to use in our ejs file
+    res.render('authors/new', { author: new Author() })
 })
 
 // Create author route (dont need a view for this cuz not rendering anything)

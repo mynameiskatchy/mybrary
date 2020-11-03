@@ -18,7 +18,8 @@ app.use(express.static('public'))
 // Set up our database
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
 })
 // Log whether we are connected to database
 const db = mongoose.connection

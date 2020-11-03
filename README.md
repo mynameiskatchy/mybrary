@@ -9,6 +9,12 @@ PART ONE
 >>> localhost:3000 or access app thru heroku "open app"
 >>> (if issues, check env variables)
 
+>>> To fix invalid URI string 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+>>> To fix DeprecationWarning: current Server Discovery and Monitoring engine pass option { useUnifiedTopology: true } to the MongoClient constructor
+
 PART TWO
 1. Create author model
 2. create author controller

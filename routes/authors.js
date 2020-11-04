@@ -21,7 +21,7 @@ router.get('/new', (req, res) => {
 
 // Create author route (dont need a view for this cuz not rendering anything)
 router.post('/', (req, res) => {
-    res.send('Create') // Create something instead of render
+    res.send(req.body.name) // Create something instead of render
 })
 
 module.exports = router

@@ -21,7 +21,23 @@ router.get('/new', (req, res) => {
 
 // Create author route (dont need a view for this cuz not rendering anything)
 router.post('/', (req, res) => {
-    res.send(req.body.name) // Create something instead of render
+    const author = new Author({
+        name: req.body.name // Explicity tell server which parms we want to accept from client
+    })
+    author.save((err, newAuthor) => {
+        if (err) {
+            // render new page again
+            res.render('authors/new', {
+                author: author,
+                errorMessage: 'Error creating Author'
+            })
+        } else {
+            // dont have this page yet
+            // res.redirect(`authors/${newAuthor.id}`) // String interpolation
+            res.redirect(`authors`)
+
+        }
+    })
 })
 
 module.exports = router

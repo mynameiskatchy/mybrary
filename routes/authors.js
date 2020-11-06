@@ -8,13 +8,19 @@ const Author = require('../models/author')
 
 // Get All authors route
 router.get('/', async (req, res) => {
+    let searchOptions = {}
+    if (req.query.name != null && req.query.name !== '') {
+        searchOptions.name = new RegExp(req.query.name, 'i')
+    }
     try {
-        const authors = await Author.find({})
-        res.render('authors/index', { authors: authors })
+        const authors = await Author.find(searchOptions)
+        res.render('authors/index', {
+            authors: authors,
+            searchOptions: req.query
+        })
     } catch {
         res.redirect('/')
     }
-    res.render('authors/index')
 }) 
 
 // New author route (displaying form)

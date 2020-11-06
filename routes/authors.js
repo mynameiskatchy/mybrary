@@ -7,12 +7,18 @@ const Author = require('../models/author')
 // those folders will contain views for corresponding route
 
 // Get All authors route
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const authors = await Author.find({})
+        res.render('authors/index', { authors: authors })
+    } catch {
+        res.redirect('/')
+    }
     res.render('authors/index')
 }) 
 
 // New author route (displaying form)
-router.get('/new', (req, res) => {
+router.get('/new', async (req, res) => {
     // This doesnt actually save anything to db
     // but creates a new author that we can use to save, del, update stuff in db
     // and gives object we can use to use in our ejs file

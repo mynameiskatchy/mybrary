@@ -37,13 +37,14 @@ router.get('/new', async (req, res) => {
 })
 
 // Create Book Route
-router.post('/', async (req, res) => {
+router.post('/', upload.single('cover'), async (req, res) => {
+    const fileName = req.file != null ? req.file.fileName : null
     const book = new Book({
         title: req.body.title,
         author: req.body.author,
         publishDate: new Date(req.body.publishDate),
         pageCount: req.body.pageCount,
-        description: req.body.description
+        description: req.body.description,
         // cover: create cover img file, get name from that, and then save to file system (multr lib)
     })
 })

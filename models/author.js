@@ -10,4 +10,3 @@ const authorSchema = new mongoose.Schema({
 
 // Pass table name and schema
 module.exports = mongoose.model('Author', authorSchema) 
-// Now can be imported and used to create new Authors in our applicaiton

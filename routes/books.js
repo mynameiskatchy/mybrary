@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 // New Book Route
 router.get('/new', async (req, res) => {
-    renderNewPage(res, newBook())
+    renderNewPage(res, new Book())
 })
 
 // Create Book Route
@@ -44,7 +44,7 @@ router.post('/', upload.single('cover'), async (req, res) => {
         // res.redirect(`books/${newBook.id}`)
         res.redirect(`books`)
     } catch {
-
+        renderNewPage(res, book, true)
     }
 })
 

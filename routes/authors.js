@@ -48,21 +48,6 @@ router.post('/', async (req, res) => {
             errorMessage: 'Error creating Author'
         })
     }
-
-    // author.save((err, newAuthor) => {
-    //     if (err) {
-    //         // render new page again
-    //         res.render('authors/new', {
-    //             author: author,
-    //             errorMessage: 'Error creating Author'
-    //         })
-    //     } else {
-    //         // dont have this page yet
-    //         // res.redirect(`authors/${newAuthor.id}`) // String interpolation
-    //         res.redirect(`authors`)
-
-    //     }
-    // })
 })
 
 module.exports = router

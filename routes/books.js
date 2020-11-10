@@ -45,9 +45,19 @@ router.post('/', upload.single('cover'), async (req, res) => {
         // res.redirect(`books/${newBook.id}`)
         res.redirect(`books`)
     } catch {
+        if (book.coverImageName != null) {
+            // only want to add book covers with associated names
+            removeBookCover(book.coverImageName)
+        }
         renderNewPage(res, book, true)
     }
 })
+
+function removeBookCover(fileName) {
+    fs.unlinked(path.join(uploadPath, fileName), err => {
+        if (err) console.error(err)
+    })
+}
 
 async function renderNewPage(res, book, hasError = false) {
     try {

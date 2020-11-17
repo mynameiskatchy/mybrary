@@ -38,12 +38,10 @@ const bookSchema = new mongoose.Schema({
 
 bookSchema.virtual('coverImagePath').get(function () {
     // Use reg fcn over regular fcn as callback to allow access to 'this' property
-  if (this.coverImage != null && this.coverImageType != null) {
-      return `data:${this.coverImageType};
-      charset=utf-8;
-      base64,
-      ${this.coverImage.toString('base64')}`
-  }
+    if (this.coverImage != null && this.coverImageType != null) {
+        return `data:${this.coverImageType};charset=utf-8;base64,
+        ${this.coverImage.toString('base64')}`
+    }
 })
 
 module.exports = mongoose.model('Book', bookSchema)

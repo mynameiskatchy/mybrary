@@ -8,6 +8,7 @@ const Author = require('../models/author')
 const uploadPath = path.join('public', Book.coverImageBasePath)
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 const upload = multer({// configure multer to be used w/ project
+
     dest: uploadPath, 
     // filter files that server accepts
     fileFilter: (req, file, callback) => {

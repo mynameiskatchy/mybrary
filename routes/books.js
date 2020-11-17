@@ -6,9 +6,8 @@ const fs = require('fs')
 const Book = require('../models/book')
 const Author = require('../models/author')
 const uploadPath = path.join('public', Book.coverImageBasePath)
-const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'] // all image types that we will be accepting
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 const upload = multer({// configure multer to be used w/ project
-    // want to upload to public folder but don't want to hardcode onto server here; store in books model
     dest: uploadPath, 
     // filter files that server accepts
     fileFilter: (req, file, callback) => {

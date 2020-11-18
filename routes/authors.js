@@ -25,9 +25,6 @@ router.get('/', async (req, res) => {
 
 // New author route (displaying form)
 router.get('/new', async (req, res) => {
-    // This doesnt actually save anything to db
-    // but creates a new author that we can use to save, del, update stuff in db
-    // and gives object we can use to use in our ejs file
     res.render('authors/new', { author: new Author() })
 })
 
@@ -55,8 +52,14 @@ router.get('/:id', (req, res) => {
     res.send('Show Author ' + req.params.id)
 })
 
-router.get('/:id/edit', (req, res) => {
-    res.send('Edit Author ' + req.params.id)
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id)
+        res.render('authors/edit', { author: author })
+    } catch {
+        res.redirect('/authors')
+    }
+    
 })
 
 router.put('/:id', (req, res) => {

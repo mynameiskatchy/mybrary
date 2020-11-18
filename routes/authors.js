@@ -2,6 +2,7 @@ const express = require('express')
 const author = require('../models/author')
 const router = express.Router()
 const Author = require('../models/author')
+const Book = require('../models/book')
 
 // Routes and controllers will have single file
 // In views they will have a folder containing views
@@ -49,8 +50,17 @@ router.post('/', async (req, res) => {
 
 /* AUTHOR ROUTES */
 // Show Author Route
-router.get('/:id', (req, res) => {
-    res.send('Show Author ' + req.params.id)
+router.get('/:id', async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id)
+        const books = await Book.find({ author: author.id }).limit(6).exec()
+        res.render('authors/show', {
+            author: author,
+            booksByAuthor: books
+        })
+    } catch {
+        res.redirect('/')
+    }
 })
 
 // Edit Author
@@ -99,5 +109,6 @@ router.delete('/:id', async (req, res) => {
         }
     }
 })
+
 module.exports = router
 

@@ -42,3 +42,5 @@ PORT = process.env.PORT || 3000
 app.listen(PORT)
 console.log('')
 
+console.log('Open app at http://localhost:3000/')
+

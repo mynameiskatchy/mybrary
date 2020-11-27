@@ -47,8 +47,7 @@ router.post('/', async (req, res) => {
 
     try {
         const newBook = await book.save()
-        // res.redirect(`books/${newBook.id}`)
-        res.redirect(`books`)
+        res.redirect(`books/${newBook.id}`)
     } catch {
         renderNewPage(res, book, true)
     }
@@ -137,7 +136,7 @@ async function renderFormPage(res, book, form, hasError = false) {
             if (form === 'edit') {
                 params.errorMessage = 'Error Updating Book'
             } else {
-                params.errorMessage = 'Error Editing Book'
+                params.errorMessage = 'Error Creating Book'
             }
         }
         res.render(`books/${form}`, params)
